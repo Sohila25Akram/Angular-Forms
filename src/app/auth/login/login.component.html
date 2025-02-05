@@ -1,0 +1,71 @@
+<!-- Tempate Driven -->
+<!-- <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <h2>Login</h2>
+
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <!-- email : enter data with email format for validation -->
+<!-- <input
+        id="email"
+        type="email"
+        name="email"
+        ngModel
+        email
+        required
+        #email="ngModel"
+      /> -->
+<!-- </div> -->
+
+<!-- <div class="control no-margin">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        ngModel
+        minlength="8"
+        required
+        #password="ngModel"
+      />
+    </div>
+
+    <button class="button">Login</button>
+  </div>
+  @if(email.invalid && email.touched && email.dirty){
+  <p class="control-error">email is not correct</p>
+  }@if(password.invalid && password.touched && password.dirty){
+  <p class="control-error">
+    password is not correct - must be at least 8 character
+  </p>
+  } -->
+<!-- @if(form.form.invalid && email.touched && password.touched){
+  <p class="control-error">Invalid valuse detected, please check your inputs</p>
+  } -->
+<!-- </form> -->
+-->
+<!-- ============================================================= -->
+
+<!-- Reactive Form -->
+<form (ngSubmit)="onSubmit()" [formGroup]="form">
+  <h2>Login</h2>
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="email">Email</label>
+      <input id="email" type="text" [formControl]="form.controls.email" />
+    </div>
+    <div class="control no-margin">
+      <label for="password">Password</label>
+      <input id="password" type="text" formControlName="password" />
+    </div>
+    <button class="button">Login</button>
+  </div>
+  @if(form.controls.email.touched && form.controls.email.dirty &&
+  form.controls.email.invalid){
+  <p class="control-error">email is not correct | not unique</p>
+  } @if(passwordIsInvalid){
+  <p class="control-error">
+    password must at least 6 character & question mark '?'
+  </p>
+  }
+</form>
